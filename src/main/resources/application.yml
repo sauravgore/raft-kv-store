@@ -1,0 +1,23 @@
+server:
+  port: ${SERVER_PORT:8080}
+raft:
+  node-id: ${RAFT_NODE_ID:node1}
+  peers: ${RAFT_PEERS:}
+  http-peers: ${RAFT_HTTP_PEERS:}
+  election-timeout-min-ms: ${RAFT_ELECTION_MIN_MS:900}
+  election-timeout-max-ms: ${RAFT_ELECTION_MAX_MS:1600}
+  heartbeat-interval-ms: ${RAFT_HEARTBEAT_MS:200}
+  rpc-timeout-ms: ${RAFT_RPC_TIMEOUT_MS:500}
+  grpc-port: ${RAFT_GRPC_PORT:9091}
+  # Docker Compose overrides this with /data; keep local IDE runs inside the project.
+  data-dir: ${RAFT_DATA_DIR:./data}
+  partition-count: ${RAFT_PARTITION_COUNT:64}
+  write-commit-timeout-ms: ${RAFT_WRITE_COMMIT_TIMEOUT_MS:5000}
+  snapshot-threshold: ${RAFT_SNAPSHOT_THRESHOLD:100}
+commerce:
+  idempotency-retention-hours: ${IDEMPOTENCY_RETENTION_HOURS:168}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
